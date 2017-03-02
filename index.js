@@ -2,7 +2,6 @@ var crypto = require('crypto');
 var fs = require('fs');
 var path = require('path');
 
-var level = require('level');
 var lodash = require('lodash');
 var mkdirp = require('mkdirp');
 
@@ -1191,7 +1190,8 @@ HardSourceWebpackPlugin.prototype.apply = function(compiler) {
 
               md5Ops.push({
                 key: file,
-                value: JSON.stringify(value),
+                value: value,
+                valueEncoding: 'json'
               });
             }
           });
@@ -1210,7 +1210,8 @@ HardSourceWebpackPlugin.prototype.apply = function(compiler) {
 
         dataOps.push({
           key: 'fileDependencies',
-          value: JSON.stringify(dataCache.fileDependencies),
+          value: dataCache.fileDependencies,
+          valueEncoding: 'json'
         });
       }
 
@@ -1246,7 +1247,8 @@ HardSourceWebpackPlugin.prototype.apply = function(compiler) {
 
         dataOps.push({
           key: 'contextDependencies',
-          value: JSON.stringify(dataCache.contextDependencies),
+          value: dataCache.contextDependencies,
+          valueEncoding: 'json'
         });
       }
 
@@ -1391,7 +1393,8 @@ HardSourceWebpackPlugin.prototype.apply = function(compiler) {
 
         moduleOps.push({
           key: identifier,
-          value: JSON.stringify(moduleCache[identifier]),
+          value: moduleCache[identifier],
+          valueEncoding: 'json'
         });
 
         // module.fileDependencies.forEach(function(file) {
@@ -1457,7 +1460,8 @@ HardSourceWebpackPlugin.prototype.apply = function(compiler) {
 
         moduleOps.push({
           key: identifier,
-          value: JSON.stringify(moduleCache[identifier]),
+          value: moduleCache[identifier],
+          valueEncoding: 'json'
         });
       }
     });
